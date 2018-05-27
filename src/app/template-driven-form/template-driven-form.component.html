@@ -1,0 +1,26 @@
+<div class="row">
+    <h2>Template Driven Form</h2>
+</div>
+<div class="row">
+  <form #templateForm (ngSubmit)="onSubmit()" [ngFormOptions]="{ updateOn: 'blur' }">
+  <!-- <form #templateForm (ngSubmit)="onSubmit()"> -->
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" id="firstname" class="form-control" required [(ngModel)]="model.firstname" #firstname="ngModel" name="firstname">
+      <!-- <input type="text" id="firstname" class="form-control" required [(ngModel)]="model.firstname" #firstname="ngModel" name="firstname" [ngModelOptions]="{ updateOn: 'blur' }"> -->
+      <div class="alert alert-danger" [hidden]="firstname.valid || firstname.pristine">First name is required</div>
+    </div>
+    <div class="form-group">
+      <label for="firstname">Last Name</label>
+      <input type="text" id="lastname" class="form-control" required [(ngModel)]="model.lastname" #lastname="ngModel" name="lastname">
+      <!-- <input type="text" id="lastname" class="form-control" required [(ngModel)]="model.lastname" #lastname="ngModel" name="lastname" [ngModelOptions]="{ updateOn: 'blur' }"> -->
+      <div class="alert alert-danger" [hidden]="lastname.valid || lastname.pristine">Last name is required</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
+<div class="row" *ngIf="model.firstname && model.lastname">
+  Hello {{model.firstname}} {{model.lastname}}!
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+    <h2>Reactive Form</h2>
+</div>
+<div class="row">
+  <form [formGroup]="nameForm" novalidate>
+    <div class="form-group">
+      <label for="firstnameR">First Name</label>
+      <input type="text" id="firstnameR" class="form-control" required formControlName="firstname" name="firstname">
+      <div class="alert alert-danger" *ngIf="!nameForm.get('firstname').pristine && nameForm.get('firstname').errors?.required">First name is required</div>
+      <div class="alert alert-danger" *ngIf="!nameForm.get('firstname').pristine && nameForm.get('firstname').errors?.pattern">First name is invalid</div>
+    </div>
+    <div class="form-group">
+      <label for="firstnameR">Last Name</label>
+      <input type="text" id="lastnameR" class="form-control" required formControlName="lastname" name="lastname">
+      <div class="alert alert-danger" *ngIf="!nameForm.get('lastname').pristine && nameForm.get('lastname').errors?.required">Last name is required</div>
+      <div class="alert alert-danger" *ngIf="!nameForm.get('lastname').pristine && nameForm.get('lastname').errors?.pattern">Last name is invalid</div>
+    </div>
+    <div class="form-group">
+        <label for="firstnameR">Email</label>
+        <input type="text" id="email" class="form-control" required formControlName="email" name="email">
+        <div class="alert alert-danger" *ngIf="!nameForm.get('email').pristine && nameForm.get('email').errors?.required">Email is required</div>
+        <div class="alert alert-danger" *ngIf="!nameForm.get('email').pristine && nameForm.get('email').errors?.email">Email is not valid</div>
+      </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
+<div class="row" *ngIf="nameForm.value.firstname && nameForm.value.lastname">
+  Hello {{nameForm.value.firstname}} {{nameForm.value.lastname}}!
+</div>
